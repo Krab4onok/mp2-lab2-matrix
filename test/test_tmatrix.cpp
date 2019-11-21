@@ -138,7 +138,7 @@ TEST(TMatrix, compare_matrix_with_itself_return_true)
 TEST(TMatrix, matrices_with_different_size_are_not_equal)
 {
 	TMatrix<int> a(3), s(4);
-	EXPECT_FALSE(a==s);
+	EXPECT_TRUE(a!=s);
 }
 
 TEST(TMatrix, can_add_matrices_with_equal_size)
@@ -194,5 +194,16 @@ TEST(TMatrix, cant_subtract_matrixes_with_not_equal_size)
 	TMatrix<int> s(4);
 	EXPECT_ANY_THROW(a - s);
 }
+TEST(TMatrix, can_create_matrix)
+{
+	ASSERT_NO_THROW(TMatrix<int> a);
+}
+TEST(TMatrix, can_use_constructor_preobrazovaniya_tipa)
+{
+	TMatrix<int> s(5);
+	Vector<Vector<int>> a;
+	ASSERT_NO_THROW(a = s);
+}
+
 
 

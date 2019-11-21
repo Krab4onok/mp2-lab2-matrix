@@ -369,7 +369,7 @@ public:
 	int GetSize();                                 //получить размер
 	operator Vector<Vector<ValType>>()
 	{
-		return mas;
+		return Vector<Vector<ValType>>;
 	}
 
 	// ввод / вывод
