@@ -346,7 +346,7 @@ Vector<T> Vector<T>::operator+(const Vector<T> x)
 		throw ex;
 	}
 }
-
+//f,d
 // Верхнетреугольная матрица
 template <class ValType>
 class TMatrix : public Vector<Vector<ValType> >

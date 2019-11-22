@@ -195,4 +195,4 @@ TEST(Vector, cant_multiply_vectors_with_not_equal_size)
 	Vector<int> v(4);
 	Vector<int> v1(5);
 	ASSERT_ANY_THROW(v * v1);
-}
+}//f,d
