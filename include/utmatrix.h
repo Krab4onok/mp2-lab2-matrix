@@ -258,6 +258,8 @@ Vector<T>::Vector()
 template <class T>
 Vector<T>::Vector(int i, int _startindex)
 {
+	if (i <= 0||i>= MAX_VECTOR_SIZE)throw 1;
+	if (_startindex < 0)throw 1;
 	size = i;
 	startindex = _startindex;
 	try {
@@ -352,6 +354,7 @@ class TMatrix : public Vector<Vector<ValType> >
 public:
 	TMatrix(int s = 10) : Vector<Vector<ValType>>(s)
 	{
+		if (s >= MAX_MATRIX_SIZE) throw 1;
 		//startindex = 0;
 		for (int i = 0; i < s; i++)
 		{

@@ -33,7 +33,8 @@ TEST(Vector, copied_vector_is_equal_to_source_one)
 {
 	Vector<int> v(10);
 	Vector<int> v1(v);
-	ASSERT_NO_THROW(v == v1);
+	bool f = v == v1;
+	ASSERT_EQ(f , 1);
 }
 
 TEST(Vector, copied_vector_has_its_own_memory)
@@ -44,7 +45,8 @@ TEST(Vector, copied_vector_has_its_own_memory)
 	{
 		v[i] = i;
 	}
-	EXPECT_NE(v, v1);
+	bool f = v == v1;
+	EXPECT_NE(f, 1);
 }
 
 TEST(Vector, can_get_size)
@@ -106,8 +108,9 @@ TEST(Vector, can_assign_vectors_of_different_size)
 {
 	Vector<int> v(4);
 	Vector<int> v1(5);
-	v = v1;
-	EXPECT_EQ(v, v1);
+	ASSERT_NO_THROW(v = v1);
+	bool f = v == v1;
+	EXPECT_EQ(f, 1);
 }
 
 TEST(Vector, compare_equal_vectors_return_true)

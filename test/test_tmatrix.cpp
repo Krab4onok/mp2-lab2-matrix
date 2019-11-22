@@ -41,7 +41,10 @@ TEST(TMatrix, copied_matrix_has_its_own_memory)
 		{
 			a[i][j] = i * 10 + j;
 		}
-	EXPECT_NE(a, s);
+
+	bool f = a != s;
+
+	EXPECT_EQ(f, 1);
 }
 
 TEST(TMatrix, can_get_size)
@@ -73,8 +76,8 @@ TEST(TMatrix, throws_when_set_element_with_too_large_index)
 TEST(TMatrix, can_assign_matrix_to_itself)
 {
 	TMatrix<int> a(5);
-	a = a;
-	EXPECT_EQ(a, a);
+	ASSERT_NO_THROW(a = a);
+	
 }
 
 TEST(TMatrix, can_assign_matrices_of_equal_size)
@@ -86,7 +89,7 @@ TEST(TMatrix, can_assign_matrices_of_equal_size)
 		{
 			a[i][j] = i * 10 + j;
 		}
-	s = a;
+	ASSERT_NO_THROW(s = a);
 	EXPECT_EQ(a, s);
 }
 
@@ -143,21 +146,17 @@ TEST(TMatrix, matrices_with_different_size_are_not_equal)
 
 TEST(TMatrix, can_add_matrices_with_equal_size)
 {
+	TMatrix<int> s(5);
+	TMatrix<int> res(5);
 	TMatrix<int> a(5);
 	for (int i = 0; i < 5; i++)
 		for (int j = 0; j < 5 - i; j++)
 		{
 			a[i][j] = i * 10 + j;
-		}
-	TMatrix<int> s(5);
-	for (int i = 0; i < 5; i++)
-		for (int j = 0; j < 5 - i; j++)
-		{
 			s[i][j] = i * 10 + j + 1;
+			res[i][j] = a[i][j] + s[i][j];
 		}
-	TMatrix<int> res(5);
-	EXPECT_NO_THROW(res = a + s);
-	
+	EXPECT_EQ(res, a + s);
 
 }
 
@@ -171,20 +170,15 @@ TEST(TMatrix, cant_add_matrices_with_not_equal_size)
 TEST(TMatrix, can_subtract_matrices_with_equal_size)
 {
 	TMatrix<int> a(5);
+	TMatrix<int> s(5);
+	TMatrix<int> res(5);
 	for (int i = 0; i < 5; i++)
 		for (int j = 0; j < 5 - i; j++)
 		{
 			a[i][j] = i * 10 + j;
-		}
-	TMatrix<int> s(5);
-	for (int i = 0; i < 5; i++)
-		for (int j = 0; j < 5 - i; j++)
-		{
 			s[i][j] = i * 10 + j + 1;
+			res[i][j] = a[i][j] - s[i][j];
 		}
-	TMatrix<int> res(5);
-	res = a - s;
-
 	EXPECT_EQ(res, a - s);
 }
 
